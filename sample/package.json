@@ -1,0 +1,166 @@
+{
+	"name": "dryrun",
+	"displayName": "dryrun",
+	"description": "ascentic webinar dryrun",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.57.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:dryrun.helloWorld",
+		"onCommand:dryrun.helloName",
+		"onCommand:dryrun.toggleComment"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "dryrun.helloWorld",
+				"title": "Hello World",
+				"category": "Dry Run",
+				"icon": {
+					"dark": "icon.svg",
+					"light": "icon.svg"
+				}
+			},
+			{
+				"command": "dryrun.helloName",
+				"title": "Hello Name",
+				"category": "Dry Run"
+			},
+			{
+				"command": "dryrun.toggleComment",
+				"title": "Exeucte toggle comment",
+				"category": "Dry Run"
+			}
+		],
+		"configuration": {
+			"title": "Ascentic Extension",
+			"properties": {
+				"dryrun.name": {
+					"type": "string",
+					"default": "Ascentic Devs",
+					"description": "Enter the name of the owner",
+					"minLength": 8,
+					"maxLength": 20
+				},
+				"dryrun.showProgress": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Do you want to show `progress bar`"
+				},
+				"dryrun.education": {
+					"type": "object",
+					"default": {
+						"task": "",
+						"status": ""
+					},
+					"markdownDescription": "Enter a **TODO**"
+				},
+				"dryrun.favoriteLanguage": {
+					"type": "string",
+					"default": "JS",
+					"enum": [
+						"Java",
+						"JS",
+						"Go",
+						"PHP"
+					],
+					"enumDescriptions": [
+						"Java",
+						"Javascript",
+						"Go Language",
+						"PHP Hypertext Preprocessor"
+					]
+				},
+				"dryrun.colorDecorators": {
+					"type": "string",
+					"description": "Enter color decorators",
+					"markdownDeprecationMessage": "**Deprecated**: Markdown Please use `#editor.colorDecorators#` instead.",
+					"deprecationMessage": "Deprecated: Please use editor colorDecorators instead."
+				}
+			}
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"command": "dryrun.helloWorld"
+				},
+				{
+					"command": "dryrun.helloName",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "dryrun.helloWorld"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "dryrun.helloWorld",
+					"when": "resourceLangId == markdown"
+				}
+			],
+			"view/title": [
+				{
+					"command": "dryrun.helloWorld"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"key": "shift+cmd+d",
+				"command": "dryrun.helloWorld"
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "package-explorer",
+					"title": "Package Explorer",
+					"icon": "icon.svg"
+				}
+			]
+		},
+		"views": {
+			"package-explorer": [
+				{
+					"id": "package-dependencies",
+					"name": "Dependencies"
+				},
+				{
+					"id": "package-outline",
+					"name": "Outline"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.57.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"eslint": "^7.27.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2",
+		"ts-loader": "^9.2.2",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0"
+	}
+}
